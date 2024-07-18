@@ -127,4 +127,4 @@ const object  = backpack.get()
 
 // Since the backpack variable is a string, you can't pass a number to the add function.
 
-backpack.add(25)
+// backpack.add(25)
