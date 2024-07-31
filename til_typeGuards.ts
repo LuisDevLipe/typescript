@@ -67,18 +67,49 @@ console.log(formatoData(new Date("2024-07-07")));
 
 console.log(formatoData("2024-01-01"));
 
-interface Humano {
-	falar: () => void;
-}
+
+
+// Exemplo 03 - Type Guards: in
 
 interface Animal {
-	voz: () => void;
+	grupo:string
 }
 
-const dizerAlgo = (som: Humano | Animal) => {
-	if ("falar" in som) {
-		return som.falar();
-	} else {
-		return som.voz();
+class Peixe implements Animal {
+	grupo: string;
+	corPeixe:string
+
+	constructor(grupo:string, corPeixe:string) {
+		this.grupo = grupo
+		this.corPeixe = corPeixe
 	}
-};
+}
+
+class Passaro implements Animal {
+	grupo: string;
+	corPena:string
+	constructor(grupo:string,corPena:string){
+		this.grupo = grupo
+		this.corPena = corPena
+	}
+}
+
+
+function nadar (grupo:string) {
+	console.log(`O ${grupo} esta nadando`)
+}
+
+function voar(grupo:string){
+	console.log(`O ${grupo} esta voando`)
+}
+
+function mover(animal:Animal) {
+	if(`corPeixe` in animal){
+		nadar((animal as Peixe).grupo)
+	} else if('corPena' in animal) {
+		voar((animal as Passaro).grupo)
+	}
+}
+
+mover(new Peixe('Peixe',"azul"))
+mover(new Passaro('Passaro',"vermelho"))
